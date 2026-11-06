@@ -1,0 +1,32 @@
+[package]
+name = "rmk-yip"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "YIP split transport integration for RMK"
+
+[workspace]
+
+[features]
+default = []
+nrf52840 = ["_radio", "yip/nrf52840"]
+_radio = ["dep:yip", "dep:embassy-executor", "dep:embassy-nrf"]
+defmt = ["dep:defmt", "rmk/defmt", "yip?/defmt"]
+log = ["dep:log", "rmk/log", "yip?/log"]
+dfu_split = ["rmk/dfu_split"]
+
+[dependencies]
+rmk = { path = "../../../rmk", default-features = false, features = ["split"] }
+yip = { path = "../../../../yip-rs", default-features = false, optional = true }
+embassy-executor = { version = "0.10", optional = true }
+embassy-nrf = { version = "0.11", optional = true }
+embassy-futures = "0.1"
+embassy-sync = "0.8"
+embassy-time = "0.5"
+postcard = { version = "1", default-features = false }
+defmt = { version = "1", optional = true }
+log = { version = "0.4", optional = true }
+
+[dev-dependencies]
+rmk = { path = "../../../rmk", default-features = false, features = ["std", "log", "split"] }
+critical-section = { version = "1.2", features = ["std"] }

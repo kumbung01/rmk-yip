@@ -1,5 +1,8 @@
 #![no_std]
 
+#[cfg(feature = "nrf52840")]
+pub use rmk_yip_macros::{central, peripheral};
+
 #[collapse_debuginfo(yes)]
 macro_rules! info {
     ($s:literal $(, $x:expr)* $(,)?) => {

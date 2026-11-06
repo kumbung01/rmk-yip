@@ -1522,7 +1522,18 @@ dependencies = [
  "log",
  "postcard",
  "rmk",
+ "rmk-yip-macros",
  "yip",
+]
+
+[[package]]
+name = "rmk-yip-macros"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "rmk-config",
+ "syn 3.0.9",
 ]
 
 [[package]]

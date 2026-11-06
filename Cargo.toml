@@ -6,16 +6,18 @@ publish = false
 description = "YIP split transport integration for RMK"
 
 [workspace]
+members = ["macros"]
 
 [features]
 default = []
-nrf52840 = ["_radio", "yip/nrf52840"]
+nrf52840 = ["_radio", "yip/nrf52840", "dep:rmk-yip-macros"]
 _radio = ["dep:yip", "dep:embassy-executor", "dep:embassy-nrf"]
 defmt = ["dep:defmt", "rmk/defmt", "yip?/defmt"]
 log = ["dep:log", "rmk/log", "yip?/log"]
-dfu_split = ["rmk/dfu_split"]
+dfu_split = ["rmk/dfu_split", "rmk-yip-macros?/dfu_split"]
 
 [dependencies]
+rmk-yip-macros = { path = "macros", optional = true }
 rmk = { path = "../../../rmk", default-features = false, features = ["split"] }
 yip = { path = "../../../../yip-rs", default-features = false, optional = true }
 embassy-executor = { version = "0.10", optional = true }
